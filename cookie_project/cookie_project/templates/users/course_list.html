@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="col-8 mx-auto">
+{% if user.is_authenticated %}
+<table class="table">
+<thead>
+    <tr>
+        <th>Course Name</th>
+        <th>Payment</th>
+        <th>Date</th>
+        <th>Status</th>
+    </tr>
+</thead>
+{% for course in object_list %}
+<tr>
+    <td>{{ course.get_name_display }}</td>
+    <td>{{ course.get_payment_display }}</td>
+    <td>{{ course.date }}</td>
+    <td>{{ course.get_status_display }}</td>
+</tr>
+{% empty %}
+    <td>No courses yet.</td>
+{% endfor %}
+</table>
+{% endif %}
+</div>
+{% endblock %}
